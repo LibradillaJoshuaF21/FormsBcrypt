@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="box1">
+        <mat-card class="login-page">
+            <mat-card-title>Job Profile</mat-card-title>
+            <mat-card-content>
+                <form 
+                class="login-form data-form"
+                (ngSubmit)="onSubmit()"
+                [formGroup]="jobForm"
+                >
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="text"
+                            name="cname"
+                            placeholder="Company Name"
+                            formControlName="cname"
+                        />
+                        <mat-error *ngIf="cname.dirty && cname.errors?.required">
+                            Company Name Field is required
+                        </mat-error>
+                        <mat-error *ngIf="cname.dirty && cname.errors?.minlength">
+                            Company Name must be at least 1 character
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="text"
+                            name="jname"
+                            placeholder="Job Placement"
+                            formControlName="jname"
+                        />
+                        <mat-error *ngIf="jname.dirty && jname.errors?.required">
+                            Job Placement Field is required
+                        </mat-error>
+                        <mat-error *ngIf="jname.dirty && jname.errors?.minlength">
+                            Job Placement must be at least 2 characters
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="number"
+                            min="0"
+                            name="yearemploy"
+                            placeholder="Years Employed"
+                            formControlName="yearemploy"
+                        />
+                        <mat-error *ngIf="yearemploy.dirty && yearemploy.errors?.required">
+                            Years Employed field is required
+                        </mat-error>
+                        <mat-error *ngIf="yearemploy.dirty && yearemploy.errors?.minlength">
+                            Years Employed must be at least 1 character
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="email"
+                            name="cemail"
+                            placeholder="Company Email"
+                            formControlName="cemail"
+                        />
+                        <mat-error *ngIf="cemail.dirty && cemail.errors?.required">
+                            Company Email field is required
+                        </mat-error>
+                        <mat-error *ngIf="cemail.dirty && cemail.errors?.email">
+                            Company Email must be a valid email
+                        </mat-error>
+                        <mat-error *ngIf="cemail.dirty && cemail.errors?.minlength">
+                            Company Email must be at least 6 characters
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="text"
+                            name="ccontact"
+                            placeholder="Company Contact Number"
+                            formControlName="ccontact"
+                        />
+                        <mat-error *ngIf="ccontact.dirty && ccontact.errors?.required">
+                            Company Contact Number field is required
+                        </mat-error>
+                        <mat-error *ngIf="ccontact.dirty && ccontact.errors?.minlength">
+                            Company Contact Number must be at least 6 characters
+                        </mat-error>
+                        <mat-error *ngIf="ccontact.dirty && ccontact.errors?.pattern">
+                            Company Contact Number must only contain numbers
+                        </mat-error>
+                    </mat-form-field>
+                    <button 
+                    mat-raised-button color="primary"
+                    [disabled]="!jobForm.valid"
+                    >Submit
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="box1">
+        <app-reactive-print
+        [cName] = "tocName"
+        [jName] = "tojName"
+        [yearEmploy] = "toyearEmploy"
+        [cEmail] = "tocEmail"
+        [cContact] = "tocContact"
+        *ngIf="isValid"
+        ></app-reactive-print>
+    </div>
+</div>

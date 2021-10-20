@@ -1,0 +1,127 @@
+<div class="container">
+    <div class="box1">
+        <mat-card class="login-page">
+            <mat-card-title>User Profile</mat-card-title>
+            <mat-card-content>
+
+                <form 
+                class="login-form data-form"
+                (ngSubmit)="onSubmit(logInForm)"
+                #logInForm="ngForm"
+                >
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="text"
+                            name="fname"
+                            ngModel
+                            #fname="ngModel"
+                            placeholder="First Name"
+                            required
+                            minlength="2"
+                        />
+                        <mat-error *ngIf="fname.dirty && fname.errors?.required">
+                            First Name Field is required
+                        </mat-error>
+                        <mat-error *ngIf="fname.dirty && fname.errors?.minlength">
+                            First Name must be at least 2 characters
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="text"
+                            name="lname"
+                            ngModel
+                            #lname="ngModel"
+                            placeholder="Last Name"
+                            required
+                            minlength="2"
+                        />
+                        <mat-error *ngIf="lname.dirty && lname.errors?.required">
+                            Last Name Field is required
+                        </mat-error>
+                        <mat-error *ngIf="lname.dirty && lname.errors?.minlength">
+                            Last Name must be at least 2 characters
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="number"
+                            min="0"
+                            name="age"
+                            ngModel
+                            #age="ngModel"
+                            placeholder="Age"
+                            required
+                            minlength="1"
+                        />
+                        <mat-error *ngIf="age.dirty && age.errors?.required">
+                            Age field is required
+                        </mat-error>
+                        <mat-error *ngIf="age.dirty && age.errors?.minlength">
+                            Age must be at least 1 character
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="email"
+                            name="email"
+                            ngModel
+                            #email="ngModel"
+                            placeholder="Email"
+                            email required
+                            minlength="6"
+                        />
+                        <mat-error *ngIf="email.dirty && email.errors?.required">
+                            Email field is required
+                        </mat-error>
+                        <mat-error *ngIf="email.dirty && email.errors?.email">
+                            Email must be a valid email
+                        </mat-error>
+                        <mat-error *ngIf="email.dirty && email.errors?.minlength">
+                            Email must be at least 6 characters
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-box">
+                        <input
+                            matInput
+                            type="password"
+                            name="password"
+                            ngModel
+                            #password="ngModel"
+                            placeholder="Password"
+                            required
+                            minlength="6"
+                        />
+                        <mat-error *ngIf="password.dirty && password.errors?.required">
+                            Password field is required
+                        </mat-error>
+                        <mat-error *ngIf="password.dirty && password.errors?.minlength">
+                            Password must be at least 6 characters
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button 
+                    mat-raised-button color="primary"
+                    [disabled]="!logInForm.valid"
+                    >Submit</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="box1">
+        <app-template-print
+            [fname]="fName"
+            [lname]="lName"
+            [age]="Age"
+            [email]="Email"
+            [password]="Password"
+            *ngIf="isValid"
+        ></app-template-print>
+    </div>
+</div>
+  
